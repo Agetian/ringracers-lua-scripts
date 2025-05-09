@@ -40,6 +40,7 @@ local bc_oppcolorchance = CV_RegisterVar({
     possiblevalue = {MIN = 0, MAX = 100}
 })
 
+local first_free_color_slot = 170   -- Per v2.3 doomdef.h, might need updating in the future game versions
 -- For followers, UINT16_MAX is MATCH color and UINT16_MAX - 1 is OPPOSITE color
 
 local function on_player_join(player)
@@ -48,18 +49,28 @@ local function on_player_join(player)
 
     if players[player].bot then
         if P_RandomRange(0, 100) < bc_skinchance.value then
-            players[player].skincolor = P_RandomRange(0, bc_maxskincolor.value)
+            -- Per v2.3, there are 100 colors before the supercolor and the free slot groups
+            -- Thus, skin color 101 should be mapped to 170 (first free slot)
+            local skincolor = P_RandomRange(0, bc_maxskincolor.value)
+            if skincolor > 100 then
+                skincolor = skincolor - 100 + first_free_color_slot - 1
+            end
+            players[player].skincolor = skincolor
         end
         if P_RandomRange(0, 100) < bc_followerchance.value then
             players[player].followerready = true
             players[player].followerskin = P_RandomRange(0, bc_maxfollowerid.value)
-	    -- TODO: improve this so that the chance isn't checked separately for each special color
             if P_RandomRange(0, 100) < bc_samecolorchance.value then
                 players[player].followercolor = UINT16_MAX
             elseif P_RandomRange(0, 100) < bc_oppcolorchance.value then
                 players[player].followercolor = UINT16_MAX - 1
             else
-                players[player].followercolor = P_RandomRange(0, bc_maxskincolor.value)
+                -- same color logic as above, needs updating if the default skin indexes change
+                local followercolor = P_RandomRange(0, bc_maxskincolor.value)
+                if followercolor > 100 then
+                    followercolor = followercolor - 100 + first_free_color_slot - 1
+                end
+                players[player].followercolor = followercolor
             end
         end
     end
