@@ -1,4 +1,7 @@
 -- Bot Cosmetics (bots use skins and followers)
+-- Only works in Online mode to "simulate" diverse player characters, 
+-- not active in Local play (Grand Prix etc.) since that is meant to be
+-- played with bots with default skins (so they look like their own selves)
 
 local bc_maxfollowerid = CV_RegisterVar({
     name = "bc_max_follower_id",
