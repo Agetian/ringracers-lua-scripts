@@ -14,9 +14,9 @@ local function do_bot_sliptide(player)
 	for player in players.iterate do
 		if player.bot then
 			if player.handleboost >= SLIPTIDEHANDLING / 2 then
-				if player.mo.angle >= ANGLE_180 then
+				if player.mo.angle > ANGLE_180 then
 					player.aizdriftstrat = 1
-				else
+				elseif player.mo.angle < ANGLE_180 then
 					player.aizdriftstrat = -1
 				end
 			end
