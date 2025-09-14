@@ -57,7 +57,6 @@ local player_mod_table = {}
 
 local function on_game_quit() 
     -- Reset the player mod table when the game ends
-    print("--- GameQuit hook fired")
     player_mod_table = {}
 end
 
