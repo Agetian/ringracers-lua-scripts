@@ -1,0 +1,8 @@
+{
+	"name": "Bot Sliptide",
+	"author": "Agetian",
+	"description": "A cheaty/hacky script that makes the bots use sliptide and wavedash.",
+	"info_url": "https://github.com/Agetian/ringracers-lua-scripts",
+	"version": "0.2",
+	"game_version": "2.4"
+}
