@@ -1,0 +1,8 @@
+{
+	"name": "Bot Cosmetics",
+	"author": "Agetian",
+	"description": "A simple script that enables the use of cosmetics (skins, followers) for bots in online play.",
+	"info_url": "https://github.com/Agetian/ringracers-lua-scripts",
+	"version": "0.2",
+	"game_version": "2.4"
+}
