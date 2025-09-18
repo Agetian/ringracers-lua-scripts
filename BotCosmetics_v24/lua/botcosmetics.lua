@@ -61,7 +61,6 @@ local function on_game_quit()
 end
 
 local function on_player_spawn(player)
-    if replayplayback then return end
     if not netgame then return end
 
     -- Try to obtain the max follower id dynamically, this requires v2.4+ 
